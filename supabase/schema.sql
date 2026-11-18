@@ -23,6 +23,13 @@ create table if not exists public.docs (
 );
 create index if not exists docs_sid_idx on public.docs ((data->>'sid'));
 
+-- Newer Supabase projects no longer grant table access automatically.
+-- Row-level security below still decides which rows each person sees.
+grant usage on schema public to authenticated, service_role;
+grant select, insert, update, delete on public.docs to authenticated;
+grant select on public.members to authenticated;
+grant all on public.docs, public.members to service_role;
+
 -- 2. Helpers: who is signed in --------------------------------------------
 create or replace function public.my_sid() returns text
 language sql stable security definer set search_path = public as

@@ -1,0 +1,11 @@
+{
+  "name": "nadia-portal-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "create": "node create-passcodes.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0"
+  }
+}
